@@ -1,5 +1,7 @@
 package io.navms.framework.common.base.utils;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 简单计时器
  *
@@ -13,9 +15,13 @@ public abstract class SimpleTimer {
         TIME.set(System.nanoTime());
     }
 
-    public static String stop() {
+    public static long stop() {
+        return stop(TimeUnit.MILLISECONDS);
+    }
+
+    public static long stop(TimeUnit unit) {
         try {
-            return String.format("%.6f ms", (System.nanoTime() - TIME.get()) / 1_000_000.0);
+            return unit.convert(System.nanoTime() - TIME.get(), TimeUnit.NANOSECONDS);
         } finally {
             TIME.remove();
         }

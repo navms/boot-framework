@@ -72,7 +72,7 @@ public class LogAspect {
             exception = e;
             throw e;
         } finally {
-            String costTime = SimpleTimer.stop();
+            long costTime = SimpleTimer.stop();
 
             // 记录方法执行结束
             logMethodEnd(logAnnotation, logPrefix.toString(), simpleClassName, methodName,
@@ -125,7 +125,7 @@ public class LogAspect {
     }
 
     private void logMethodEnd(Log logAnnotation, String logPrefix, String simpleClassName,
-                              String methodName, Object result, Throwable exception, String costTime) {
+                              String methodName, Object result, Throwable exception, long costTime) {
         try {
             StringBuilder logMessage = new StringBuilder();
             logMessage.append(logPrefix)

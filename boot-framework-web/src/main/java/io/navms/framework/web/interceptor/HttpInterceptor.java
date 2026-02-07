@@ -68,7 +68,7 @@ public class HttpInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        LogUtils.info("请求结束 <<< Method: {}, URI: {}, Status: {}, Cost: {}", request.getMethod(),
+        LogUtils.info("请求结束 <<< Method: {}, URI: {}, Status: {}, Cost: {}ms", request.getMethod(),
                 request.getRequestURI(), response.getStatus(), SimpleTimer.stop());
 
         LogContext.clear();
